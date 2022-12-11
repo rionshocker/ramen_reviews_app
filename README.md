@@ -1,6 +1,6 @@
 # Ramen Reviews App
 
-This was created for a project in which a ramen reviews web app was created with the following functions:
+This was created for a project in which a ramen reviews web app with a given database was created with the following functions:
 
 1. View reviews
 2. Add reviews
