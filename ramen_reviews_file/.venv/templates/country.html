@@ -1,0 +1,43 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+{{ super() }}
+        <style>
+            body { background: #e8f1f9}
+        </style>
+{% endblock %}
+
+{% block title %}
+Ramen Reviews
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row pb-5">
+        <div class="col-md-10 col-lg-9 mx-lg-auto mx-md-auto">
+            <h1 class="pt-5 pb-2">List of Reviews</h1>
+            <p class="lead alert alert-warning">This is a list of ramen reviews from <strong>{{ Country }}</strong>.</p>
+                <p class="m1-4"><a href="{{ url_for('index') }}">Return to the index.</a></p>
+                    <table class="table">
+                        <tr>
+                            <th>Country</th>
+                            <th>Brand</th>
+                            <th>Type</th>
+                            <th>Package</th>
+                            <th>Rating</th>
+                        </tr>
+                        {% for ramen in ramens %}
+                        <tr>
+                            <td>{{ramen.Country}}</td>
+                            <td>{{ramen.Brand}}</td>
+                            <td>{{ramen.Type}}</td>
+                            <td>{{ramen.Package}}</td>
+                            <td>{{ramen.Rating}}</td>
+                        </tr>
+                        {% endfor %}
+
+                    </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

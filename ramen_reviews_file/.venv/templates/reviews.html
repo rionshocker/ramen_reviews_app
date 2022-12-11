@@ -1,0 +1,71 @@
+{% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block styles %}
+{{ super() }}
+        <style>
+            body {background: #e8f1f9; }
+        </style>
+{% endblock %}
+
+{% block title %}
+Ramen Reviews
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row pb-5">
+        <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
+            <h1 class="pt-5 pb-2">List of Reviews</h1>
+            <p class="lead alert alert-warning">This is a list of ramen reviews with the keyword <strong>{{search_Form.search.data}}</strong>. You can edit and delete reviews here.</p>
+                <div>
+                    {{wtf.quick_form(search_Form)}}
+                </div>
+                <p class="m1-4"><a href="{{ url_for('index') }}">Return to the index page.</a></p>
+                <form method="POST" id="form2" action="{{ url_for('edit_or_delete') }}">
+                    <table class="table">
+                        <tr>
+                            <th></th>
+                            <th>ID</th>
+                            <th>Country</th>
+                            <th>Brand</th>
+                            <th>Type</th>
+                            <th>Package</th>
+                            <th>Rating</th>
+                            
+                        </tr>
+                        {% for ramen in ramens %}
+                        <tr>
+                            <td class="center-align"><input type="radio" name="Index" value="{{ ramen.Index }}" required></td>
+                            <td>{{ ramen.ID }}</td>
+                            <td>{{ ramen.Country }}</td>
+                            <td>{{ ramen.Brand }}</td>
+                            <td>{{ ramen.Type }}</td>
+                            <td>{{ ramen.Package }}</td>
+                            <td>{{ ramen.Rating }}</td>
+                           
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    
+                    <div class="form-group lead alert alert-success pb-4">
+                        <p>What do you want to do with the selected review?</p>
+
+                        <div class="form-check form-check-inline">
+                        <label class="form-check-label"><input class="form-check-input" type="radio" name="choice" value="delete" required> Delete it</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <label class="form-check-label"><input class="form-check-input" type="radio" name="choice" value="edit" required> Edit it</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="btn btn-success" type="submit" value="Submit Choice">
+                    </div>
+                </form>           
+        </div>
+    </div>
+</div>
+{% endblock %}

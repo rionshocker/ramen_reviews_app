@@ -1,0 +1,32 @@
+{% extends "bootstrap/base.html" %}
+
+{% block styles %}
+{{ super() }}
+        <style>
+            body {background: #e8f1f9; }
+        </style>
+{% endblock %}
+
+{% block title %}
+Ramen Reviews
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
+            <h1 class="pt-5 pb-2">Welcome to Ramen Reviews!</h1>
+            <p class="lead">This is the index page for Ramen Reviews to post and edit ramen reviews.</p>
+
+            <div class="navbar">
+                {% for category, label in categories.items() %}
+                    <a href="{{ category }}">{{ label }}</a>
+                {% endfor %}
+            </div>
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}
